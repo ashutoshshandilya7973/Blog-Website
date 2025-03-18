@@ -13,6 +13,7 @@ app.use('*',(req,res,next)=>{
 app.use(globalErrorHandler);
 
 // this function is async because may be before listing to the route we have to connect with the db or anything 
+
 (async()=>{
     try {
         app.listen(process.env.PORT,()=>{
@@ -23,7 +24,6 @@ app.use(globalErrorHandler);
     }
 
 })();
-
 
 
 

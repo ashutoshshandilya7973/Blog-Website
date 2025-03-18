@@ -62,16 +62,16 @@ const generateAccessAndRefereshToken = async (userId) => {
 }
 
  const accessTokenOptions = {
-    httpOnly: true,
+    httpOnly: false,
     sameSite: 'none',
-    secure: true,
+    secure: false,
     maxAge: 86400000,
 };
 
 const refreshTokenOptions = {
-    httpOnly: true,
+    httpOnly: false,
     sameSite: 'none',
-    secure: true,
+    secure: false,
     maxAge: 864000000,
 };
 export { isPasswordCorrect, generateAccessAndRefereshToken,accessTokenOptions,refreshTokenOptions }

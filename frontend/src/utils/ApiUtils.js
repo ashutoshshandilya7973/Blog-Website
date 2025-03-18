@@ -1,14 +1,15 @@
 import axios from 'axios'
-import { error } from 'console';
+
 
 class ApiUtils {
   constructor(baseUrl) {
     this.api = axios.create({
       baseURL: baseUrl,
-      timeout: 5000,
+      timeout: 8000,
       headers: {
         "Content-Type": "application/json"
-      }
+      },
+      withCredentials:true,
 
     });
 
@@ -27,13 +28,13 @@ class ApiUtils {
   async post(endpoint, data) {
     try {
       const response = await this.api.post(endpoint, data);
-      
-
       return response.data;
     } catch (error) {
-      this.handleError(error)
+      this.handleError(error);
+      return { success: false, message: "An error occurred" }; // Return an object instead of throwing
     }
   }
+  
 
   async get(endpoint, param = {}) {
     try {
@@ -64,5 +65,5 @@ class ApiUtils {
   }
 }
 
-const apiUtils= new ApiUtils("");
+const apiUtils= new ApiUtils("http://localhost:3005/api");
 export default apiUtils;

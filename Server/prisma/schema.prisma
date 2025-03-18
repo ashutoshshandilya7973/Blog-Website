@@ -7,20 +7,45 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User{
-  id Int @id @default(autoincrement())
-  email String? @unique
-  password String? 
-  name String? 
-  refreshToken String?
+model User {
+  id                 Int                 @id @default(autoincrement())
+  email              String?             @unique
+  password           String?
+  name               String?
+  refreshToken       String?
+  blog               blog[]
   passwordResetToken passwordResetToken?
 }
 
-model passwordResetToken{
-  id Int @id @default(autoincrement())
-  user_id Int @unique
-  user User @relation(fields: [user_id] ,references: [id] ,onDelete: Cascade)
-  token String
+model passwordResetToken {
+  id        Int      @id @default(autoincrement())
+  user_id   Int      @unique
+  token     String
   expiresAt DateTime
   createdAt DateTime @default(now())
+  user      User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+}
+
+model blog {
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String
+  imgUrl    String
+  category  Category @default(TECHNOLOGY)
+  user_id   Int     
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+}
+
+enum Category {
+  TECHNOLOGY
+  BUSINESS
+  HEALTH
+  EDUCATION
+  ENTERTAINMENT
+  SPORTS
+  LIFESTYLE
+  SCIENCE
+  TRAVEL
+  FOOD
 }

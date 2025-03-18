@@ -10,7 +10,7 @@ import bcrypt from 'bcrypt'
 
 const registerUser = asyncHandler(async (req, res, next) => {
     const { name, email, password } = req.body;
-    console.log(name, email, password)
+    
     const existUser = await prisma.user.findUnique({
         where: {
             email: email
@@ -35,15 +35,18 @@ const registerUser = asyncHandler(async (req, res, next) => {
 
 const loginUser = asyncHandler(async (req, res, next) => {
     const { email, password } = req.body;
-    const existUser = prisma.user.findUnique({
+    
+    const existUser =await prisma.user.findUnique({
         where: {
             email: email
         }
     });
+    
     if (!existUser) {
         return next(new customError(400, "User not exist"));
     }
     const validPassword = isPasswordCorrect(password, existUser.password)
+    
     if (!validPassword) {
         return next(new customError(400, 'Invalid Password'))
     }
@@ -57,7 +60,7 @@ const loginUser = asyncHandler(async (req, res, next) => {
             refreshToken: true
         }
     })
-    console.log(verifyAll, accessToken, refreshToken)
+    
 
     // now set all these thing in the cookies and send the response to the frontend
 
@@ -72,7 +75,7 @@ const loginUser = asyncHandler(async (req, res, next) => {
 const forgotPassword = asyncHandler(async (req, res, next) => {
     const { email } = req.body;
 
-
+    //  console.log(email)
     const validEMail = await prisma.user.findUnique({
         where: { email: email },
     });
@@ -81,7 +84,7 @@ const forgotPassword = asyncHandler(async (req, res, next) => {
     if (!validEMail) {
         return next(new customError(400, "User not registered"));
     }
-
+    
 
     const resetToken = crypto.randomBytes(32).toString("hex");
     const hashedToken = crypto.createHash("sha256").update(resetToken).digest("hex");
@@ -95,11 +98,12 @@ const forgotPassword = asyncHandler(async (req, res, next) => {
     });
 
 
-    const resetLink = `https://localhost:5127/reset-password?token=${resetToken}`;
+    const resetLink = `http://localhost:5174/reset-password?token=${resetToken}`;
+    
     await sendEmail(email, resetLink);
 
 
-    res.status(200).json({ message: "Password reset link sent", resetToken });
+    res.json(new ApiResponse(200,resetToken,'Password Reset link send'))
 });
 
 
