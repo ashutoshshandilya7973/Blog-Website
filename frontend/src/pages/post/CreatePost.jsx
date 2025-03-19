@@ -38,9 +38,9 @@ const CreatePost = () => {
     }
 
     return (
-        <div className='container max-w-5xl mx-auto py-10 px-4 '>
+        <div className='container max-w-5xl h-full mx-auto py-10 px-4 '>
             <div className="text-3xl font-bold mt-10">
-                <h1 className='text-primary'>Create New Blog Post</h1>
+                <h1 className=''>Create New Blog Post</h1>
             </div>
             <form onSubmit={handleSubmit} >
                 <div className="flex flex-col gap-4">
@@ -60,7 +60,7 @@ const CreatePost = () => {
                                         <img src={image} alt="Preview" style={{ width: "100%", maxHeight: "300px", objectFit: "cover" }} />
                                     </div>
                                 ) : (
-                                    <div className="border border-dashed border-gray-400 rounded-2xl w-full h-60  p-4 flex flex-col items-center justify-center">
+                                    <div className="border border-dashed border-gray-400 rounded-2xl bg-gray-800 w-full h-60  p-4 flex flex-col items-center justify-center">
                                         <Button onClick={(e) => {
                                             e.stopPropagation();
                                             console.log("Button clicked!");
@@ -86,13 +86,13 @@ const CreatePost = () => {
                     </div>
                     {/* code for the title section of the blog post */}
                     <div className=" border border-gray-500 w-full rounded-xl p-6 flex flex-col gap-2 ">
-                        <h1 className="text-primary text-2xl ">Blog Title</h1>
-                        <Input type="text" placeholder="Enter a engaging title....." className="p-5 placeholder:font-semibold border border-gray-500 rounded-xl placeholder-black placeholder:text-xl" />
+                        <h1 className=" text-2xl ">Blog Title</h1>
+                        <Input type="text" placeholder="Enter a engaging title....." className="p-6 placeholder:font-medium  border border-gray-500 rounded-xl placeholder-black placeholder:text-xl" />
 
                     </div>
                 </div>
                 <hr className='mt-5' />
-                <div className="tiptap mt-8 focus:border-transparent ">
+                <div className="tiptap mt-8 focus:border-transparent bg-amber-300 ">
                     <Editor />
 
                 </div>

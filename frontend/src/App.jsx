@@ -5,7 +5,7 @@ import Register from "./pages/Register/Register.jsx"
 import { Routes,Route } from "react-router-dom"
 import CreatePost from "./pages/post/CreatePost.jsx"
 import Editor from "./pages/post/Editor.jsx"
-import './index.css'
+
 import TipTap from "./pages/post/TipTap.jsx"
 function App() {
   return (
