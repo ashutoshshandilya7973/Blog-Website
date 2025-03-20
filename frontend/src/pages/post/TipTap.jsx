@@ -3,20 +3,21 @@ import { useEditor, EditorContent } from '@tiptap/react'
 import Placeholder from '@tiptap/extension-placeholder'
 import CodeBlock from '@tiptap/extension-code-block'
 import Blockquote from '@tiptap/extension-blockquote'
-import BulletList from '@tiptap/extension-bullet-list'
 
-import { useState } from 'react'
+import ListItem from '@tiptap/extension-list-item'
 import StarterKit from '@tiptap/starter-kit'
 import MenuBar from '@/components/Tiptap/MenuBar.jsx'
 import BubbleMenuComponent from '@/components/Tiptap/BubbleMenu.jsx'
 import '../../app.css'
-import FloatingMenu from '@tiptap/extension-floating-menu';
 
-const extensions = [StarterKit,
+const extensions = [StarterKit.configure({
+  bulletList: true,  // Ensures bullet list is enabled
+  orderedList: true, // Ensures ordered list is enabled
+}),
   Placeholder.configure({
     placeholder: 'type/browse to change the style'
   }),
-  CodeBlock,Blockquote,BulletList
+  CodeBlock,Blockquote,ListItem
 ]
 const content = ``
 const TipTap = () => {
@@ -31,7 +32,7 @@ const TipTap = () => {
 
   return (
    <div>
-      <MenuBar editor={editor} />
+      {/* <MenuBar editor={editor} /> */}
       <BubbleMenuComponent editor={editor}/>
       <EditorContent editor={editor} />
     </div>

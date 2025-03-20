@@ -92,7 +92,7 @@ const CreatePost = () => {
                     </div>
                 </div>
                 <hr className='mt-5' />
-                <div className="tiptap mt-8 focus:border-transparent bg-amber-300 ">
+                <div className="tiptap mt-8 focus:border-transparent ">
                     <Editor />
 
                 </div>
