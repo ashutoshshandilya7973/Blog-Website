@@ -1,9 +1,9 @@
 import React from 'react'
 import TipTap from './TipTap.jsx'
-const Editor = () => {
+const Editor = ({setValue}) => {
   return (
     <div>
-      <TipTap/>
+      <TipTap setValue={setValue}/>
     </div>
   )
 }

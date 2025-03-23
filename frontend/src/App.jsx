@@ -5,18 +5,20 @@ import Register from "./pages/Register/Register.jsx"
 import { Routes,Route } from "react-router-dom"
 import CreatePost from "./pages/post/CreatePost.jsx"
 import Editor from "./pages/post/Editor.jsx"
-
 import TipTap from "./pages/post/TipTap.jsx"
+import Home from "./pages/Home/Home.jsx"
+
 function App() {
   return (
     <>
-          {/* <Routes>
+          <Routes>
+              <Route path="/" element={<Home/>}/>
                <Route path="/login" element={<Login/>} />
                <Route path="/register" element={<Register/>}/>
                <Route path="/forget-password" element={<ForgetPassword/>}/>
                <Route path="/reset-password" element={<ResetPassword/>}/>
-          </Routes> */}
-          <CreatePost/>
+          </Routes>
+          {/* <CreatePost/> */}
           {/* <Editor/> */}
           {/* <TipTap/> */}
           

@@ -1,11 +1,19 @@
 import { BubbleMenu } from "@tiptap/react";
-import { Bold, Italic, Strikethrough } from "lucide-react";
+import { Bold, Italic, Strikethrough,Underline,Code,SquareDashedBottomCode,Link,Image } from "lucide-react";
+import { setLink } from "@/utils/linkExtension";
+import { useCallback } from "react";
 import { Button } from "@/components/ui/button";
+import addImage from "@/utils/imageExtensionTiptap";
 import "../../app.css";
-
 const BubbleMenuComponent = ({ editor }) => {
   if (!editor) return null;
 
+  const handleSetLink=useCallback(()=>{
+         setLink(editor)
+  },[editor])
+  const handleImage=useCallback(()=>{
+    addImage(editor)
+  },[editor])
   return (
     <BubbleMenu editor={editor} tippyOptions={{ duration: 100 }} className="border tiptap border-gray-700 rounded-2xl">
       <div className="flex shadow-md p-[1px] rounded-lg ">
@@ -43,31 +51,78 @@ const BubbleMenuComponent = ({ editor }) => {
         </select>
 
         <Button
+          type="button"
           variant="ghost"
           size="icon"
           onClick={() => editor.chain().focus().toggleBold().run()}
           className={editor.isActive("bold") ? "bg-gray-200" : ""}
         >
-          <Bold size={18} />
+          <Bold size={22} />
         </Button>
 
         <Button
+         type="button"
           variant="ghost"
           size="icon"
           onClick={() => editor.chain().focus().toggleItalic().run()}
           className={editor.isActive("italic") ? "bg-gray-200" : ""}
         >
-          <Italic size={18} />
+          <Italic size={22} />
         </Button>
 
         <Button
+         type="button"
           variant="ghost"
           size="icon"
           onClick={() => editor.chain().focus().toggleStrike().run()}
           className={editor.isActive("strike") ? "bg-gray-200" : ""}
         >
-          <Strikethrough size={18} />
+          <Strikethrough size={22} />
         </Button>
+        <Button
+         type="button"
+            variant="ghost"
+            size="icon"
+            onClick={() => editor.chain().focus().toggleUnderline().run()}
+            className={editor.isActive('underline') ? 'is-active' : ''}
+          >
+            <Underline size={22} />
+          </Button>
+          <Button
+           type="button"
+            variant="ghost"
+            size="icon"
+            onClick={() => editor.chain().focus().toggleCode().run()}
+            className={editor.isActive('code') ? 'is-active' : ''}
+          >
+            <Code size={22} />
+          </Button>
+          <Button
+           type="button"
+            variant="ghost"
+            size="icon"
+            onClick={handleSetLink} className={editor.isActive('link') ? 'is-active' : ''}
+          >
+            <Link size={22} />
+          </Button>
+          <Button
+           type="button"
+            variant="ghost"
+            size="icon"
+            onClick={() => editor.chain().focus().toggleCodeBlock().run()}
+            className={editor.isActive('codeBlock') ? 'is-active' : ''}
+          >
+            <SquareDashedBottomCode />
+          </Button>
+          <Button
+           type="button"
+            variant="ghost"
+            size="icon"
+            onClick={handleImage}
+            
+          >
+            <Image  size={22}/>
+          </Button>
       </div>
     </BubbleMenu>
   );

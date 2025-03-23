@@ -167,7 +167,23 @@ p.is-editor-empty:first-child::before {
   ol {
     list-style-type: decimal; /* For numbered lists */
   }
-  
+  code {
+    background-color: var(--purple-light);
+    border-radius: 0.4rem;
+    color: var(--black);
+    font-size: 0.85rem;
+    padding: 0.25em 0.3em;
+  }
+
+  /* Link styles */
+  a {
+    color: blue;
+    cursor: pointer;
+
+    &:hover {
+      color: var(--purple-contrast);
+    }
+  }
   /* css code for floating menu */
 
   .floating-menu {

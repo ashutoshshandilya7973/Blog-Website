@@ -3,6 +3,10 @@ import { useEditor, EditorContent } from '@tiptap/react'
 import Placeholder from '@tiptap/extension-placeholder'
 import CodeBlock from '@tiptap/extension-code-block'
 import Blockquote from '@tiptap/extension-blockquote'
+import Underline from '@tiptap/extension-underline'
+import Code from '@tiptap/extension-code'
+import { linkExtension } from '@/utils/linkExtension'
+import Image from '@tiptap/extension-image'
 
 import ListItem from '@tiptap/extension-list-item'
 import StarterKit from '@tiptap/starter-kit'
@@ -17,18 +21,23 @@ const extensions = [StarterKit.configure({
   Placeholder.configure({
     placeholder: 'type/browse to change the style'
   }),
-  CodeBlock,Blockquote,ListItem
+  CodeBlock,Blockquote,ListItem,Underline,Code,linkExtension,Image
+
 ]
 const content = ``
-const TipTap = () => {
+const TipTap = ({setValue}) => {
 
   const editor = useEditor({
     extensions,
     content,
+    onUpdate:({editor})=>{
+         setValue("content",editor.getHTML())
+    }
    
 
   })
   
+   
 
   return (
    <div>

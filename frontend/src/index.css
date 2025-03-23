@@ -3,14 +3,11 @@
 @plugin "tailwindcss-animate";
 
 @custom-variant dark (&:is(.dark *));
-@plugin "daisyui";
-
-body {
-  background-color: black !important;
-  color: white;
- height: 100%;
- 
+@plugin "daisyui" {
+  themes: light --default;
 }
+
+
 
 :root {
   --radius: 0.625rem;
@@ -121,7 +118,7 @@ body {
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    /* @apply border-border outline-ring/50; */
   }
 
 }
